@@ -1,0 +1,23 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "Pebble Technology",
+    "longName": "GPath Demo",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "GPath Demo",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "6d5f57f9-b01c-4a6a-88f0-ec024d38ba41",
+    "versionLabel": "2.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
