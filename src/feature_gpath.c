@@ -3,11 +3,15 @@
 #define NUM_PATHS 2
 
 // This defines graphics path information to be loaded as a path later
-static const GPathInfo HOUSE_PATH_POINTS = {
-3,
-(GPoint []) {{-72,-84}, {0,0}, {72,-84} }
-};
+// static const GPathInfo HOUSE_PATH_POINTS = {
+// 17,
+// (GPoint []) {{-37, 66}, {43,66}, {43,49}, {13,49}, {13,7}, {54,7}, {54,-11}, {12,-11}, {12,-35}, {-10,-35}, {-10,-13}, {-53,-13}, {-53,5}, {-9,5}, {-8,47}, {-38,47}, {-38,64}, }
+// };
 
+  static const GPathInfo HOUSE_PATH_POINTS = {
+14,
+(GPoint []) {{41, -6}, {45,-31}, {32,-16}, {20,-18}, {16,-30}, {29,-45}, {4,-37}, {0,-10}, {-33,28}, {-32,42}, {-18,41}, {15,3}, {41,-4}, {41,-4}, }
+};
 
 
 // This is an example of another super simple shape, 
@@ -30,6 +34,8 @@ static int s_current_path_index;
 static int s_path_angle;
 static bool s_outline_mode;
 
+
+
 // This is the layer update callback which is called on render updates
 static void path_layer_update_callback(Layer *layer, GContext *ctx) {
   // You can rotate the path before rendering
@@ -49,19 +55,38 @@ static void path_layer_update_callback(Layer *layer, GContext *ctx) {
   }
 }
 
-static int path_angle_add(int angle) {
-  return s_path_angle = (s_path_angle + angle) % 360;
+static int path_angle_add() {
+  return s_path_angle = (s_path_angle + 10) % 360;
+}
+static int path_angle_remove() {
+  return s_path_angle = (s_path_angle - 10) % 360;
+}
+
+void app_timer_handler_add(){
+  path_angle_add();
+  layer_mark_dirty(s_path_layer);
+  app_timer_register(10, app_timer_handler_add, NULL);
+  
+}
+void app_timer_handler_remove(){
+  path_angle_remove();
+  layer_mark_dirty(s_path_layer);
+  app_timer_register(10, app_timer_handler_remove, NULL);
+  
 }
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   // Rotate the path counter-clockwise
-  path_angle_add(-10);
+  path_angle_add();
   layer_mark_dirty(s_path_layer);
+  app_timer_handler_add();
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
   // Rotate the path clockwise
-  path_angle_add(10);
+  path_angle_remove();
+  layer_mark_dirty(s_path_layer);
+  app_timer_handler_remove();
 
  }
 
@@ -79,6 +104,8 @@ static void select_raw_up_handler(ClickRecognizerRef recognizer, void *context) 
   s_current_path = s_path_array[s_current_path_index];
   layer_mark_dirty(s_path_layer);
 }
+
+
 
 static void config_provider(void *context) {
   window_single_click_subscribe(BUTTON_ID_UP, up_click_handler);
