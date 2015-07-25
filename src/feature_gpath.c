@@ -15,8 +15,8 @@ static const GPathInfo HOUSE_PATH_POINTS = {
 // above the center of the watchface.
 
 static const GPathInfo INFINITY_RECT_PATH_POINTS = {
-73,
-(GPoint []) {{-63, -4}, {-26,-11}, {-20,-21}, {-9,-25}, {0,-25}, {12,-24}, {16,-20}, {21,-22}, {18,-27}, {19,-34}, {24,-36}, {29,-34}, {30,-30}, {28,-23}, {36,-21}, {40,-19}, {44,-17}, {49,-14}, {53,-17}, {56,-15}, {56,-12}, {54,-10}, {50,-10}, {44,-10}, {34,-8}, {29,-7}, {26,-5}, {26,5}, {34,10}, {26,9}, {26,17}, {23,12}, {17,14}, {20,9}, {19,3}, {15,-3}, {8,-2}, {-5,-2}, {-14,-2}, {-16,4}, {-16,8}, {-5,12}, {-16,12}, {-16,22}, {-19,14}, {-30,14}, {-22,8}, {-22,3}, {-22,-1}, {-25,-4}, {-38,-3}, {-52,0}, {-59,1}, {-69,1}, {-71,-11}, {-70,-23}, {-68,-33}, {-65,-42}, {-62,-50}, {-62,-60}, {-66,-66}, {-71,-76}, {-62,-70}, {-58,-62}, {-57,-57}, {-57,-51}, {-57,-47}, {-58,-40}, {-61,-36}, {-64,-32}, {-66,-23}, {-66,-17}, {-64,-6}, }
+20,
+(GPoint []) {{-48, -39}, {50,-39}, {51,-8}, {42,18}, {32,35}, {18,45}, {-5,54}, {-21,54}, {-36,54}, {-23,41}, {-4,41}, {10,32}, {21,24}, {31,10}, {37,-9}, {36,-24}, {-30,-24}, {-31,-11}, {-47,-19}, {-48,-39}, }
 };
 
 
@@ -62,8 +62,8 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
   // Rotate the path clockwise
   path_angle_add(10);
-  layer_mark_dirty(s_path_layer);
-}
+
+ }
 
 static void select_raw_down_handler(ClickRecognizerRef recognizer, void *context) {
   // Show the outline of the path when select is held down
